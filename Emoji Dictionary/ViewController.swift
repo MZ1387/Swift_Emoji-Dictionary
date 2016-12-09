@@ -8,6 +8,8 @@
 
 import UIKit
 
+// ViewController is a class and we're running peroperties and methods(functions) inside of it
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // Tableview outlet
@@ -15,6 +17,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     // Emojis array
+    // An array of emoji "objects"
+    // emoji will be an array of "Emoji"(class/type)
     
     var emojis : [Emoji] = []
     
@@ -26,11 +30,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         
         /* This code gets run the very first time that your app opens up.
-         Table views have a datasourcs and a delegate and this is where it looks to to 
+         Table views have a datasource and a delegate and this is where it looks to to
          ask questions about what should go inside of the table view. "How many things 
          do I need?", "What should I put inside of each cell?" Both tableView.dataSource = self 
          and tableView.delegate = self look to the view controller for those answers 
          which includes UITableViewDataSource, UITableViewDelegate */
+        // tableView is a var outlet we've created (table view we dragged onto the view controller)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -42,7 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        //returns amount of rows equal to items in the array
+        // returns amount of rows equal to items in the array
         
         return emojis.count
     }
@@ -54,8 +59,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        /* In this function we make a new cell, we say this cell's textlabel should have this text
-        inside of it and then we return the answer. Index path has info about what particular point in
+        /* In this function we make a new cell, we say this cell's 
+         textlabel should have this text inside of it and then we return 
+         the answer. Index path has info about what particular point in
         the tableview wants to show. Tableviews and arrays are 0 based counting ()*/
         
         let cell = UITableViewCell()
@@ -65,18 +71,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // Segue: Function runs anytime someone taps on one of the cells inside of the table view
+    // Remove highlight from selected items: tableView.deselectRow(at: indexPath, animated: true)
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let emoji = emojis[indexPath.row]
-        
         performSegue(withIdentifier: "moveSegue", sender: emoji)
         
     }
     
+    /* function gets run right before you move from current
+    view controller to the next one */
+    // defVC new constant that represents the new definitionViewController
+    // defVC is equal to whatever was sent via the sender
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         let defVC = segue.destination as! DefinitionViewController
         defVC.emoji = sender as! Emoji
         
@@ -86,6 +97,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // Created emoji "objects" to be put inside of the array
+    // Funtion "returns" an array of emoji "objects"
     
     func makeEmojiArray() -> [Emoji] {
         
@@ -103,13 +117,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let emoji3 = Emoji()
         emoji3.stringEmoji = "🐮"
-        emoji3.definition = "Hey Sean"
+        emoji3.definition = "Mr. Cow"
         emoji3.category = "Category: Person"
         emoji3.createdYear = 1987
         
         let emoji4 = Emoji()
         emoji4.stringEmoji = "🐷"
-        emoji4.definition = "Happy Birthday!"
+        emoji4.definition = "Mrs. Pig"
         emoji4.category = "Category: Sister"
         emoji4.createdYear = 1989
         

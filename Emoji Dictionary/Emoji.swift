@@ -6,6 +6,11 @@
 //  Copyright © 2016 tinySEED. All rights reserved.
 //
 
+/* Created a new swift file and named it the class(Emoji)
+ so that the emoji definitions would be more efficient than using if statements */
+
+
+
 class Emoji {
     var stringEmoji = ""
     var definition = ""
