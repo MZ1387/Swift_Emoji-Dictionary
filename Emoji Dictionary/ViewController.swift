@@ -36,6 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
          and tableView.delegate = self look to the view controller for those answers 
          which includes UITableViewDataSource, UITableViewDelegate */
         // tableView is a var outlet we've created (table view we dragged onto the view controller)
+        // = self looks to the classes in the TaskViewController
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -62,7 +63,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         /* In this function we make a new cell, we say this cell's 
          textlabel should have this text inside of it and then we return 
          the answer. Index path has info about what particular point in
-        the tableview wants to show. Tableviews and arrays are 0 based counting ()*/
+        the tableview wants to show. Tableviews and arrays are 0 based counting */
+        // We're creating an "object" with UITableView "class"
         
         let cell = UITableViewCell()
         let emoji = emojis[indexPath.row]

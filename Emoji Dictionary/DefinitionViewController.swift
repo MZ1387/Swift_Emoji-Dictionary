@@ -28,7 +28,7 @@ class DefinitionViewController: UIViewController {
     
     var emoji = Emoji()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
